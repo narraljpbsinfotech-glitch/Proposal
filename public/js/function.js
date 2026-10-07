@@ -100,7 +100,7 @@ function submitForm(){
 }
 
   document.querySelector('#outputDate').textContent = date;
-  document.querySelector('#outputTime').textContent = time;
+  document.querySelector('#outputTime').textContent = formattedTime;
   document.querySelector('#outputTheme').textContent = theme;
   document.querySelector('#outputAdditional').textContent = additionalInputs.join(', ');
   document.querySelector('#output').style.display = 'hidden';
