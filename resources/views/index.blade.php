@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Proposal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    .font-lilita {
+      font-family: 'Lilita One', cursive;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-rose-50 text-slate-800 min-h-screen flex items-center justify-center p-4 selection:bg-rose-200">
+
+  <!-- Main Container -->
+  <main class="w-full max-w-md bg-white/90 backdrop-blur-md rounded-3xl p-6 md:p-8 shadow-xl border border-rose-100 text-center relative overflow-hidden">
+    
+    <!-- Decorative Background Circles -->
+    <div class="absolute -top-12 -left-12 w-32 h-32 bg-rose-200/50 rounded-full blur-2xl pointer-events-none"></div>
+    <div class="absolute -bottom-12 -right-12 w-32 h-32 bg-pink-200/50 rounded-full blur-2xl pointer-events-none"></div>
+
+    <!-- Step 1 -->
+    <div id="step1" class="space-y-6">
+      <div class="text-5xl my-2">💖</div>
+      <h1 class="font-lilita text-3xl md:text-4xl text-rose-600 tracking-wide">
+        Pwede ba kitang maaya mag-date?
+      </h1>
+      <nav class="flex items-center justify-center gap-4 pt-4">
+        <button id="YesBtn" onclick="gotoNext('step1','step2')" class="px-8 py-3 bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-bold rounded-full shadow-lg shadow-rose-200 transition-all duration-200">
+          Yes
+        </button>
+        <button id="NoBtn" onclick="resizeYes()" class="px-8 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-full transition-all duration-200">
+          No
+        </button>
+      </nav>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" class="hidden space-y-6">
+      <div class="text-5xl my-2">📅</div>
+      <h1 class="font-lilita text-3xl md:text-4xl text-rose-600 tracking-wide">
+        Kailan ka libre?
+      </h1>
+      <div class="space-y-4 max-w-xs mx-auto text-left">
+        <div>
+          <label class="block text-xs font-semibold text-rose-500 uppercase tracking-wider mb-1">Petsa</label>
+          <input id="date" type="date" class="w-full px-4 py-3 rounded-2xl bg-rose-50/50 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-rose-400 text-slate-700 font-medium" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-rose-500 uppercase tracking-wider mb-1">Oras</label>
+          <input id="time" type="time" class="w-full px-4 py-3 rounded-2xl bg-rose-50/50 border border-rose-200 focus:outline-none focus:ring-2 focus:ring-rose-400 text-slate-700 font-medium" />
+        </div>
+      </div>
+      <div class="pt-4">
+        <button onclick="gotoNext('step2', 'step3')" class="w-full py-3 bg-rose-500 hover:bg-rose-600 active:scale-95 text-white font-bold rounded-full shadow-lg shadow-rose-200 transition-all">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="step3" class="hidden space-y-6">
+      <div class="text-5xl my-2">✨</div>
+      <h1 class="font-lilita text-3xl md:text-4xl text-rose-600 tracking-wide">
+        Anong klaseng date ang trip mo?
+      </h1>
+      <nav class="flex flex-col gap-2.5 pt-2">
+        <button type="button" class="themes w-full py-3 px-4 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-slate-700 font-medium rounded-2xl transition-all text-sm active:scale-98" value="Coffee & Cafe (Chill & Kuwentuhan)" onclick="selectTheme(this)">
+          ☕ Coffee & Cafe (Chill & Kuwentuhan)
+        </button>
+        <button type="button" class="themes w-full py-3 px-4 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-slate-700 font-medium rounded-2xl transition-all text-sm active:scale-98" value="Arcade & Board Games (Interactive)" onclick="selectTheme(this)">
+          🎮 Arcade & Board Games (Interactive)
+        </button>
+        <button type="button" class="themes w-full py-3 px-4 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-slate-700 font-medium rounded-2xl transition-all text-sm active:scale-98" value="Museum / Art Gallery (Culture & Walk)" onclick="selectTheme(this)">
+          🖼️ Museum / Art Gallery (Culture & Walk)
+        </button>
+        <button type="button" class="themes w-full py-3 px-4 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-slate-700 font-medium rounded-2xl transition-all text-sm active:scale-98" value="Binondo Food Crawl (Foodie)" onclick="selectTheme(this)">
+          🥟 Binondo Food Crawl (Foodie)
+        </button>
+        <button type="button" class="themes w-full py-3 px-4 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-slate-700 font-medium rounded-2xl transition-all text-sm active:scale-98" value="Park Picnic (Outdoor & Sunset)" onclick="selectTheme(this)">
+          🧺 Park Picnic (Outdoor & Sunset)
+        </button>
+      </nav>
+
+      <!-- Nav Buttons -->
+      <div class="flex gap-3 pt-2">
+        <!-- Back Button -->
+        <button onclick="gotoNext('step3', 'step2')" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-full transition-all">
+          Back
+        </button>
+        <!-- Next Button -->
+        <button onclick="gotoNext('step3', 'step4')" class="w-1/2 py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-full shadow-lg shadow-rose-200 transition-all">
+          Next
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div id="step4" class="hidden space-y-6">
+      <div class="text-5xl my-2">🍟</div>
+      <h1 class="font-lilita text-3xl md:text-4xl text-rose-600 tracking-wide">
+        Anong craving natin today?
+      </h1>
+      
+      <div id="input-container" class="space-y-3">
+        <div class="flex gap-2">
+          <input type="text" class="flex-1 px-4 py-2.5 rounded-xl bg-rose-50/50 border border-rose-200 text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-400" placeholder="e.g. Milk Tea, Ramen..." />
+          <button type="button" class="px-4 py-2.5 bg-rose-100 text-rose-600 font-semibold rounded-xl hover:bg-rose-200 transition-all text-sm">
+            Delete
+          </button>
+        </div>
+      </div>
+
+      <button id="addBtn" class="w-full py-2.5 border-2 border-dashed border-rose-300 text-rose-600 font-semibold rounded-xl hover:bg-rose-50 transition-all text-sm">
+        + Add Input
+      </button>
+
+      <!-- Nav Buttons -->
+      <div class="flex gap-3 pt-2">
+        <!-- Back Button -->
+        <button onclick="gotoNext('step4', 'step3')" class="w-1/2 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold rounded-full transition-all">
+          Back
+        </button>
+        <!-- Next / Submit Button -->
+        <button onclick="gotoNext('step4', 'output'); submitForm()" class="w-1/2 py-3 bg-rose-500 hover:bg-rose-600 text-white font-bold rounded-full shadow-lg shadow-rose-200 transition-all">
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <!-- Output / Receipt Section -->
+    <div id="output" class="hidden space-y-6">
+      <div class="p-6 bg-rose-50/80 rounded-2xl border-2 border-dashed border-rose-300 space-y-4 text-left">
+        <h1 class="font-lilita text-2xl text-center text-rose-600 tracking-wider">
+          🧾 Receipt of Our Date
+        </h1>
+        <hr class="border-rose-200" />
+        <div class="space-y-2 text-slate-700 text-sm">
+          <p><strong class="text-rose-500">Date:</strong> <span id="outputDate" class="font-semibold text-slate-800"></span></p>
+          <p><strong class="text-rose-500">Time:</strong> <span id="outputTime" class="font-semibold text-slate-800"></span></p>
+          <p><strong class="text-rose-500">Theme:</strong> <span id="outputTheme" class="font-semibold text-slate-800"></span></p>
+          <p><strong class="text-rose-500">Cravings:</strong> <span id="outputAdditional" class="font-semibold text-slate-800"></span></p>
+        </div>
+      </div>
+      <div class="text-center font-lilita text-xl text-rose-500">
+        See you soon! 🥰
+      </div>
+    </div>
+
+  </main>
+
+  <script src="{{ asset('js/function.js') }}"></script>
+</body>
+</html>
