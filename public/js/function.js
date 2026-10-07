@@ -86,9 +86,23 @@ function submitForm(){
   let theme = selectedTheme;
   let additionalInputs = Array.from(document.querySelectorAll('#input-container input')).map(input => input.value);
 
+  let timeValue = document.querySelector('#time').value;
+  let formattedTime = '';
+
+  if (timeValue) {
+  let [hours, minutes] = timeValue.split(':');
+  hours = parseInt(hours);
+
+  let amPm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12 || 12; // Convert to 12-hour format
+
+  formattedTime = `${hours}:${minutes} ${amPm}`;
+}
+
   document.querySelector('#outputDate').textContent = date;
   document.querySelector('#outputTime').textContent = time;
   document.querySelector('#outputTheme').textContent = theme;
   document.querySelector('#outputAdditional').textContent = additionalInputs.join(', ');
   document.querySelector('#output').style.display = 'hidden';
 }
+
