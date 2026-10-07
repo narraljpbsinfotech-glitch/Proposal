@@ -63,12 +63,12 @@ addBtn.addEventListener('click', function(){
   const newInput = document.createElement('input');
   newInput.type = 'text';
   newInput.placeholder = 'e.g. Milk Tea, Ramen...';
-  newInput.className = 'flex-1 px-4 py-2.5 rounded-xl bg-rose-950/40 border border-rose-900/60 text-rose-100 placeholder-rose-300/40 focus:outline-none focus:ring-2 focus:ring-rose-500 text-sm';
+  newInput.className = 'px-4 py-2.5 rounded-xl bg-rose-50/50 border border-rose-200 text-slate-700 focus:outline-none focus:ring-2 focus:ring-rose-400';
 
   const deleteBtn = document.createElement('button');
   deleteBtn.type = 'button';
   deleteBtn.textContent = 'Delete';
-  deleteBtn.className = 'px-4 py-2.5 bg-rose-900/50 hover:bg-rose-900 text-rose-300 font-semibold rounded-xl transition-all text-sm border border-rose-800/50';
+  deleteBtn.className = 'px-4 py-2.5 bg-rose-100 text-rose-600 font-semibold rounded-xl hover:bg-rose-200 transition-all text-sm';
 
 
 deleteBtn.addEventListener('click', function(){
@@ -82,7 +82,6 @@ container.appendChild(row);
 
 function submitForm(){
   let date = document.querySelector('#date').value;
-  let time = document.querySelector('#time').value;
   let theme = selectedTheme;
   let additionalInputs = Array.from(document.querySelectorAll('#input-container input')).map(input => input.value);
 
@@ -106,3 +105,7 @@ function submitForm(){
   document.querySelector('#output').style.display = 'hidden';
 }
 
+// once pinindut yung submit malalagay sa email or notif
+// yung date neeb idebug kasi daming number walang limit
+// tska dapat text lang yung input sa food and drink
+// yung yes hindi responsive
